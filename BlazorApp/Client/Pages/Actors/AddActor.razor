@@ -1,0 +1,16 @@
+﻿@page "/actor/add"
+@inject NavigationManager navigationManager
+
+<h3>Add a new actor</h3>
+
+<ActorAddEditForm Actor="Actor" Loading="_loading" OnValidSubmit="Add"/>
+
+@code {
+    private ActorDto Actor = new ();
+    private void Add()
+    {
+        
+    Console.WriteLine($"New movie information\n Title: {Actor.FirstName}");
+    }
+}
+

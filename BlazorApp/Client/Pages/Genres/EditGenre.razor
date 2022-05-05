@@ -1,0 +1,27 @@
+﻿@page "/genre/edit/{id:int}"
+@using Model.Entities
+
+<h3>Edit genre</h3>
+
+<GenreAddEditForm Genre="Genre" Loading="_loading" OnValidSubmit="Edit" />
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private GenreDto Genre;
+
+    private void Edit()
+    {
+        Console.WriteLine($"New genre information\n Name: {Genre.Name}");
+    }
+
+    protected override void OnInitialized()
+    {
+        Genre = new GenreDto
+        {
+            Id = this.Id,
+            Name = "Comedy"
+        };
+    }
+}
+

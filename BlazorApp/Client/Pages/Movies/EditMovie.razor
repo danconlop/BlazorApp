@@ -1,0 +1,29 @@
+﻿@page "/movie/edit/{id:int}"
+@page "/movie/edit/{id:int}/{title}"
+@using Model.Entities
+
+<h3>Edit movie</h3>
+
+<MovieAddEditForm Movie="Movie" Loading="_loading" OnValidSubmit="Edit" />
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    [Parameter]
+    public string Title { get; set; }
+    private MovieDto Movie;
+
+    protected override void OnInitialized()
+    {
+        Movie = new MovieDto
+        {
+            Id = this.Id,
+            Title = this.Title
+        };
+    }
+
+    private void Edit()
+    {
+
+    }
+}

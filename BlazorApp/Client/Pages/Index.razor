@@ -1,0 +1,21 @@
+﻿@page "/"
+@page "/index"
+
+@using Model.Entities
+@inject IMovieApi movieApi
+
+<MovieListComponent Movies="Movies" />
+
+@code {
+    private List<Movie> Movies { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Movies = movieApi.GetMovies();
+    }
+
+    private void AddMovie()
+    {
+        Movies.Add(new Movie { Title = "Test", ReleaseDate = DateTime.Today });
+        }
+}

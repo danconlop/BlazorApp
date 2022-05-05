@@ -1,0 +1,30 @@
+﻿@page "/actor/edit/{id:int}"
+@using Model.Entities
+
+<h3>Edit actor</h3>
+
+<ActorAddEditForm Actor="Actor" Loading="_loading" OnValidSubmit="Edit" />
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private ActorDto Actor;
+
+    private void Edit()
+    {
+        Console.WriteLine($"New actor information\n Name: {Actor.FirstName} {Actor.LastName} \nDate of birth: {Actor.DateOfBirth} \nYears active: {Actor.YearsActive}");
+    }
+
+    protected override void OnInitialized()
+    {
+        Actor = new ActorDto
+        {
+            Id = this.Id,
+            FirstName = "",
+            LastName = "",
+            DateOfBirth = new DateTime(1985, 10, 12),
+            YearsActive = 17
+        };
+    }
+}

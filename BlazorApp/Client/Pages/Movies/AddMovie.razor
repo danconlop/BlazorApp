@@ -1,0 +1,15 @@
+﻿@page "/movie/add"
+@inject NavigationManager navigationManager
+
+<h3>Add a new movie</h3>
+
+<MovieAddEditForm Movie="Movie" Loading="_loading" OnValidSubmit="Add" />
+
+@code {
+    private MovieDto Movie = new();
+    private void Add()
+    {
+        //navigationManager.NavigateTo("movie");
+        Console.WriteLine($"New movie information\n Title: {Movie.Title} \nRelease Date: {Movie.ReleaseDate}");
+    }
+}

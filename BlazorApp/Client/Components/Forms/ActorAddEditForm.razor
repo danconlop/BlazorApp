@@ -1,0 +1,43 @@
+﻿<EditForm Model="Actor" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label>First name:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="Actor.FirstName"></InputText>
+            <ValidationMessage For="@(() => Actor.FirstName)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Last name:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="Actor.LastName"></InputText>
+            <ValidationMessage For="@(() => Actor.LastName)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Date of birth:</label>
+        <div>
+            <InputDate class="form-control" @bind-Value="Actor.DateOfBirth"></InputDate>
+            <ValidationMessage For="@(() => Actor.DateOfBirth)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Years active:</label>
+        <div>
+            <InputNumber class="form-control" @bind-Value="Actor.YearsActive"></InputNumber>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">
+        <img src="https://www.mansarovar.com.co/app/PQRS/LibraryCSS/giphy.gif" style="width: 20px; height: 20px;" class="@(Loading ? "" : "d-none")">
+        Save
+    </button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public ActorDto Actor { get; set; }
+    [Parameter]
+    public bool Loading { get; set; }
+    [Parameter]
+    public EventCallback OnValidSubmit { get; set; }
+}
