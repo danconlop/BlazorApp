@@ -1,23 +1,46 @@
 ﻿@page "/movie/add"
 @inject NavigationManager navigationManager
+@inject IMovieApi movieApi
 @inject IActorApi actorApi
 @inject IGenreApi genreApi
 
 <h3>Add a new movie</h3>
 
-<MovieAddEditForm Movie="Movie" Actors="Actors" Genres="Genres" Loading="_loading" OnValidSubmit="Add" />
+<MovieAddEditForm movie="model" Actors="Actors" Genres="Genres" Loading="_loading" OnValidSubmit="Add" />
+
+@if (_showError)
+{
+    <p style="color: red;">The request could not be processed.</p>
+}
 
 @code {
-    private MovieDto Movie = new();
+    private MovieDto model = new();
     private List<ActorDto> Actors = new();
     private List<GenreDto> Genres = new();
 
     private bool _loading = false;
+    public bool _showError = false;
 
-    private void Add()
+    private async Task Add()
     {
-        //navigationManager.NavigateTo("movie");
-        Console.WriteLine($"New movie information\n Title: {Movie.Title} \nRelease Date: {Movie.ReleaseDate}");
+        //_loading = true;
+        //_showError = false;
+
+        //var result = await movieApi.Add(model);
+
+        //if(result is null)
+        //{
+        //    navigationManager.NavigateTo("movies");
+        //}
+        //else
+        //{
+        //    _showError = true;
+        //    Console.WriteLine(result);
+        //}
+
+        //_loading = false;
+
+        Console.WriteLine(model.Actors.Count);
     }
 
     protected override async Task OnInitializedAsync()

@@ -2,25 +2,25 @@
 
 <div style="margin-right: 2%; margin-bottom: 10px; text-align: center;">
     <a href="movie">
-        <img src="@Movie.Poster" alt="Poster" style="width: 225px; height: 300px;" />
+        <img src="@movie.Poster" alt="Poster" style="width: 225px; height: 300px;" />
     </a>
-    <p style="max-width: 225px; height: 45px; font-size: 15px; font-weight: bold;"><a href="movie">@Movie.TitleFit</a></p>
+    <p style="max-width: 225px; height: 45px; font-size: 15px; font-weight: bold;"><a href="movie">@movie.TitleFit</a></p>
 
     @if (ShowButton)
     {
         <div>
             <a class="btn btn-info">Edit</a>
-            <button class="btn btn-danger" @onclick="() => DeleteMovie.InvokeAsync(Movie)">Delete</button>
+            @*<button class="btn btn-danger" @onclick="() => DeleteMovie.InvokeAsync(movie)">Delete</button>*@
         </div>
     }
 </div>
 
 @code {
     [Parameter]
-    public Movie Movie { get; set; }
+    public MovieDto movie { get; set; }
     //private string test = "delete 2";
     [Parameter]
     public bool ShowButton { get; set; }
-    [Parameter]
-    public EventCallback<Movie> DeleteMovie { get; set; }
+    //[Parameter]
+    //public EventCallback<MovieDto> DeleteMovie { get; set; }
 }

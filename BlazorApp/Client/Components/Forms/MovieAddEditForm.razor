@@ -1,37 +1,37 @@
-﻿
+﻿@inject IJSRuntime JS
 
-<EditForm Model="Movie" OnValidSubmit="OnValidSubmit">
+<EditForm Model="movie" OnValidSubmit="OnValidSubmit">
     <DataAnnotationsValidator />
     <div class="form-group">
         <label>Title:</label>
         <div>
-            <InputText class="form-control" @bind-Value="Movie.Title"></InputText>
-            <ValidationMessage For="@(() => Movie.Title)" />
+            <InputText class="form-control" @bind-Value="movie.Title"></InputText>
+            <ValidationMessage For="@(() => movie.Title)" />
         </div>
     </div>
     <div class="form-group">
         <label>Release Date:</label>
         <div>
-            <InputDate class="form-control" @bind-Value="Movie.ReleaseDate"></InputDate>
+            <InputDate class="form-control" @bind-Value="movie.ReleaseDate"></InputDate>
         </div>
     </div>
     <div class="form-group">
         <label>Poster URL:</label>
         <div>
-            <InputText class="form-control" @bind-Value="Movie.Poster"></InputText>
+            <InputText class="form-control" @bind-Value="movie.Poster"></InputText>
         </div>
     </div>
     <div class="form-group">
-        <p>Actors</p>
-        <GenericMultipleSelectComponent ModelType="ActorDto" ModelList="Actors">
+        <label for="Actors">Actors</label>
+        <GenericMultipleSelectComponent ModelType="ActorDto" ModelList="Actors" SelectListName="Actors" >
             <ItemTemplate Context="actor">
                 <option value="@actor.Id"> @actor.FirstName @actor.LastName</option>
             </ItemTemplate>
         </GenericMultipleSelectComponent>
     </div>
     <div class="form-group">
-        <p>Genres</p>
-        <GenericMultipleSelectComponent ModelType="GenreDto" ModelList="Genres">
+        <label for="Genres">Genres</label>
+        <GenericMultipleSelectComponent ModelType="GenreDto" ModelList="Genres" SelectListName="Genres">
             <ItemTemplate Context="genre">
                 <option value="@genre.Id"> @genre.Name</option>
             </ItemTemplate>
@@ -45,7 +45,7 @@
 
 @code {
     [Parameter]
-    public MovieDto Movie { get; set; }
+    public MovieDto movie { get; set; }
     [Parameter]
     public bool Loading { get; set; }
     [Parameter]

@@ -1,4 +1,4 @@
-﻿using Model.Entities;
+﻿using BlazorApp.Shared.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +8,7 @@ namespace BlazorApp.Client.Services.Abstractions
 {
     public interface IMovieApi
     {
-        List<Movie> GetMovies();
+        Task<string> Add(MovieDto model);
+        Task<List<MovieDto>> GetAll();
     }
 }

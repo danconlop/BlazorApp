@@ -34,7 +34,7 @@ namespace BlazorApp.Client
             //Transient: Instancía un objeto en cada llamada, genera una nueva instancia del objeto cada que es llamado
             //services.AddSingleton<ServiceSingleton>();
             //services.AddTransient<ServiceTransient>();
-            services.AddScoped<IMovieApi, GenderApi>();
+            services.AddScoped<IMovieApi, MovieApi>();
             services.AddScoped<IGenreApi, GenreApi>();
             services.AddScoped<IActorApi, ActorApi>();
         }

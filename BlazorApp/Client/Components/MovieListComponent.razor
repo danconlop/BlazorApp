@@ -5,7 +5,7 @@
 <div style="display: flex; flex-wrap: wrap; align-items: center;">
     <GenericListComponent GenericList="Movies">
         <ListAny Context="movie">
-            <MovieSingleComponent Movie="movie" ShowButton="_show" DeleteMovie="DeleteMovie" />
+            <MovieSingleComponent movie="movie" ShowButton="_show" DeleteMovie="DeleteMovie" />
         </ListAny>
     </GenericListComponent>
 </div>
@@ -15,7 +15,7 @@
     // Parametros deben ser:
     // publicos y tener setter getter
     [Parameter]
-    public List<Movie> Movies { get; set; }
+    public List<MovieDto> Movies { get; set; }
     private bool _show = false;
 
     // Sicnrono si queremos hacer cambios en el valor de uno de los campos (campos internos)
@@ -42,15 +42,15 @@
     //}
 
 
-    private async Task DeleteMovie(Movie movie)
-    {
-        bool confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to remove the movie {movie.Title}");
+    //private async Task DeleteMovie(Movie movie)
+    //{
+    //    bool confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to remove the movie {movie.Title}");
 
-        if (confirm)
-        {
-            Movies.Remove(movie);
-            //Console.WriteLine($"Deleting movie {movie.Title}");
-            await js.InvokeVoidAsync("console.log", $"Deleting movie {movie.Title}");
-        }
-    }
+    //    if (confirm)
+    //    {
+    //        Movies.Remove(movie);
+    //        //Console.WriteLine($"Deleting movie {movie.Title}");
+    //        await js.InvokeVoidAsync("console.log", $"Deleting movie {movie.Title}");
+    //    }
+    //}
 }

@@ -15,5 +15,26 @@ namespace BlazorApp.Shared.Dto
         public string Poster { get; set; }
         [Required]
         public DateTime ReleaseDate { get; set; }
+        public List<ActorDto> Actors { get; set; } = new();
+        public List<GenreDto> Genres { get; set; } = new();
+        public string TitleFit
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Title))
+                {
+                    return null;
+                }
+                if (Title.Length > 60)
+                {
+                    return Title.Substring(0, 57) + "...";
+                }
+                else
+                {
+                    return Title;
+                }
+
+            }
+        }
     }
 }
