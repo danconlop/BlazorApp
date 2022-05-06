@@ -12,6 +12,7 @@
     [Parameter]
     public string Title { get; set; }
     private MovieDto Movie;
+    private bool _loading = false;
 
     protected override void OnInitialized()
     {

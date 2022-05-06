@@ -1,15 +1,29 @@
 ﻿@page "/movie/add"
 @inject NavigationManager navigationManager
+@inject IActorApi actorApi
+@inject IGenreApi genreApi
 
 <h3>Add a new movie</h3>
 
-<MovieAddEditForm Movie="Movie" Loading="_loading" OnValidSubmit="Add" />
+<MovieAddEditForm Movie="Movie" Actors="Actors" Genres="Genres" Loading="_loading" OnValidSubmit="Add" />
 
 @code {
     private MovieDto Movie = new();
+    private List<ActorDto> Actors = new();
+    private List<GenreDto> Genres = new();
+
+    private bool _loading = false;
+
     private void Add()
     {
         //navigationManager.NavigateTo("movie");
         Console.WriteLine($"New movie information\n Title: {Movie.Title} \nRelease Date: {Movie.ReleaseDate}");
     }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Actors = await actorApi.GetAll();
+        Genres = await genreApi.GetAll();
+    }
+
 }

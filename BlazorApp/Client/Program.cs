@@ -36,6 +36,7 @@ namespace BlazorApp.Client
             //services.AddTransient<ServiceTransient>();
             services.AddScoped<IMovieApi, GenderApi>();
             services.AddScoped<IGenreApi, GenreApi>();
+            services.AddScoped<IActorApi, ActorApi>();
         }
     }
 }

@@ -1,11 +1,61 @@
 ﻿@page "/actors"
-
+@inject IActorApi actorApi
 <h3>Actors</h3>
 
-<div class="form-group">
-    <a href="actor/add" class="btn btn-info">Add Actor</a>
-</div>
+@if (_loading)
+{
+    <img src="https://www.mansarovar.com.co/app/PQRS/LibraryCSS/giphy.gif" style="width: 20px; height: 20px;" class="@(_loading ? "" : "d-none")">
+}
+else
+{
+    <div class="form-group">
+        <a class="btn btn-info" href="actor/add">Add Actor</a>
+    </div>
+    <div class="d-flex justify-content-center">
+        @if (model.Any())
+        {
+
+
+            <div class="d-flex">
+                @foreach (var item in model)
+                {
+                    <div class="card ml-3" style="width: 18rem;">
+                        <img src="@(item.PhotoUrl)" class="card-img-top" style="height: 300px; width: auto;" alt="@(item.FirstName) photo">
+                        <div class="card-body">
+                            <h5 class="card-title font-weight-bold">@item.FirstName @item.LastName</h5>
+                            <h5 class="card-subtitle mt-1">DoB: @item.DateOfBirth.ToShortDateString()</h5>
+                            <h5 class="card-subtitle mt-1">Years Active: @item.YearsActive</h5>
+                            <p class="card-text">@item.Bio</p>
+                            <div class="text-center">
+                                <a href="@($"actor/edit/{item.Id}")" class="btn btn-secondary btn-sm">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        }
+        else
+        {
+            <p>There are no elements to show</p>
+        }
+
+    </div>
+
+}
 
 @code {
+    private List<ActorDto> model = new();
+    private bool _loading = false;
+    private string route = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _loading = true;
+
+        model = await actorApi.GetAll();
+
+        _loading = false;
+    }
 
 }

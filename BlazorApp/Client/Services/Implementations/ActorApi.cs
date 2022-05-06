@@ -9,17 +9,18 @@ using System.Threading.Tasks;
 
 namespace BlazorApp.Client.Services.Implementations
 {
-    public class GenreApi : IGenreApi
+    public class ActorApi : IActorApi
     {
-        private readonly string _endpoint = "api/genre";
+
+        private readonly string _endpoint = "api/actor";
         private readonly HttpClient _httpClient;
 
-        public GenreApi(HttpClient httpClient)
+        public ActorApi(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
 
-        public async Task<string> Add(GenreDto model)
+        public async Task<string> Add(ActorDto model)
         {
             var result = await _httpClient.PostAsJsonAsync(_endpoint, model);
 
@@ -28,18 +29,15 @@ namespace BlazorApp.Client.Services.Implementations
 
             return null;
         }
-
-        public async Task<List<GenreDto>> GetAll()
+        public async Task<List<ActorDto>> GetAll()
         {
-            return await _httpClient.GetFromJsonAsync<List<GenreDto>>($"{_endpoint}/all");
+            return await _httpClient.GetFromJsonAsync<List<ActorDto>>($"{_endpoint}/all");
         }
-
-        public async Task<GenreDto> GetById(int id)
+        public async Task<ActorDto> GetById(int id)
         {
-            return await _httpClient.GetFromJsonAsync<GenreDto>($"{_endpoint}/{id}");
+            return await _httpClient.GetFromJsonAsync<ActorDto>($"{_endpoint}/{id}");
         }
-
-        public async Task<string> Update(GenreDto model)
+        public async Task<string> Update(ActorDto model)
         {
             var result = await _httpClient.PutAsJsonAsync(_endpoint, model);
 

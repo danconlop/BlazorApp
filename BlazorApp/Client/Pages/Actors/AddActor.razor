@@ -1,16 +1,39 @@
 ﻿@page "/actor/add"
 @inject NavigationManager navigationManager
+@inject IActorApi actorApi
 
 <h3>Add a new actor</h3>
 
-<ActorAddEditForm Actor="Actor" Loading="_loading" OnValidSubmit="Add"/>
+<ActorAddEditForm Actor="model" Loading="_loading" OnValidSubmit="Add" />
+
+@if (_showError)
+{
+    <p style="color: red;">The request could not be processed.</p>
+}
 
 @code {
-    private ActorDto Actor = new ();
-    private void Add()
+    private ActorDto model = new();
+    private bool _loading = false;
+    private bool _showError = false;
+
+    private async Task Add()
     {
-        
-    Console.WriteLine($"New movie information\n Title: {Actor.FirstName}");
+        _loading = true;
+        _showError = false;
+
+        var result = await actorApi.Add(model);
+
+        if (result is null)
+        {
+            navigationManager.NavigateTo("actors");
+        }
+        else
+        {
+            _showError = true;
+            Console.WriteLine(result);
+        }
+
+        _loading = false;
     }
 }
 

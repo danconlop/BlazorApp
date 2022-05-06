@@ -1,5 +1,5 @@
 ﻿<EditForm Model="Actor" OnValidSubmit="OnValidSubmit">
-    <DataAnnotationsValidator />
+    <FluentValidationValidator />
     <div class="form-group">
         <label>First name:</label>
         <div>
@@ -25,6 +25,20 @@
         <label>Years active:</label>
         <div>
             <InputNumber class="form-control" @bind-Value="Actor.YearsActive"></InputNumber>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Photo URL:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="Actor.PhotoUrl"></InputText>
+            <ValidationMessage For="@(() => Actor.PhotoUrl)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Biography:</label>
+        <div>
+            <InputTextArea class="form-control" @bind-Value="Actor.Bio"></InputTextArea>
+            <ValidationMessage For="@(() => Actor.Bio)" />
         </div>
     </div>
     <button type="submit" class="btn btn-success">

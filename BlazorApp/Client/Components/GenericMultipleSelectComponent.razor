@@ -1,0 +1,17 @@
+﻿@typeparam ModelType
+
+<div style="display: flex; flex-wrap: wrap; align-items: center;">
+    <select name="GenericList" style="width: 300px;" multiple>
+        @foreach (var item in ModelList)
+        {
+            <option value="@ItemTemplate(item)"> @ItemTemplate(item)</option>
+        }
+    </select>
+</div>
+
+@code {
+    [Parameter]
+    public List<ModelType> ModelList { get; set; }
+    [Parameter]
+    public RenderFragment<ModelType> ItemTemplate { get; set; }
+}

@@ -14,6 +14,9 @@ namespace Model.Entities
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int YearsActive { get; set; }
+        public string PhotoUrl { get; set; }
+        [StringLength(100)]
+        public string Bio { get; set; }
         public ICollection<Movie> Movies { get; set; }
 
     }
